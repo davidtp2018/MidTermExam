@@ -14,7 +14,7 @@ public class Course {
 		CourseID = UUID.randomUUID();
 	}
 	
-	public Course(UUID CourseID, String CourseName, int GradePoints, eMajor Major){
+	public Course(String CourseName, int GradePoints, eMajor Major){
 		this();
 		this.CourseName = CourseName;
 		this.GradePoints = GradePoints;

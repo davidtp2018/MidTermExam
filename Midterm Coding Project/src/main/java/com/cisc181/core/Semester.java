@@ -13,7 +13,7 @@ public class Semester {
 		SemesterID = UUID.randomUUID();
 	}
 	
-	public Semester(UUID SemesterID, Date StartDate, Date EndDate){
+	public Semester(Date StartDate, Date EndDate){
 		this();
 		this.StartDate = new java.util.Date();
 		this.EndDate = new java.util.Date();

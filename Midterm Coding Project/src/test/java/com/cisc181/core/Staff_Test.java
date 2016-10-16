@@ -16,7 +16,6 @@ public class Staff_Test {
 	// Creates the ArrayList of Staff
 
 	static ArrayList<Staff> staff1 = new ArrayList<Staff>();
-	private Staff st1;
 
 	public static Date newDate(int yr, int mon, int day) {
 		Calendar cal2 = Calendar.getInstance();
