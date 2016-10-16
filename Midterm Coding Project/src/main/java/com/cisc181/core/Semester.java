@@ -10,13 +10,13 @@ public class Semester {
 	private Date EndDate;
 	
 	public Semester(){
-		SemesterID = UUID.randomUUID();
+		
 	}
 	
-	public Semester(Date StartDate, Date EndDate){
-		this();
-		this.StartDate = new java.util.Date();
-		this.EndDate = new java.util.Date();
+	public Semester(UUID SemesterID, Date StartDate, Date EndDate){
+		this.SemesterID = SemesterID;
+		this.StartDate = StartDate;
+		this.EndDate = EndDate;
 	}
 
 	public UUID getSemesterID() {

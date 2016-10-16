@@ -11,14 +11,14 @@ public class Course {
 	private eMajor Major;
 	
 	public Course(){
-		CourseID = UUID.randomUUID();
+		
 	}
 	
-	public Course(String CourseName, int GradePoints, eMajor Major){
-		this();
-		this.CourseName = CourseName;
-		this.GradePoints = GradePoints;
-		this.Major = Major;
+	public Course(UUID courseID, String courseName, int gradePoints, eMajor major){
+		CourseID = courseID;
+		CourseName = courseName;
+		GradePoints = gradePoints;
+		Major = major;
 	}
 	
 	public UUID getCourseID() {

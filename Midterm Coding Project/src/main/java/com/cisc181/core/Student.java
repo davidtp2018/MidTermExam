@@ -19,12 +19,12 @@ public class Student extends Person {
         this.Major = Major;    
     }
     
-    public  UUID getStudentID(){
+    public UUID getStudentID(){
     	return StudentID;
     }
     
 	public Student(String FirstName, String MiddleName, String LastName,Date DOB, eMajor Major,
-			String Address, String Phone_number, String Email) throws PersonException
+			String Address, String Phone_number, String Email, UUID StudentID) throws PersonException
 	{
 		super(FirstName, MiddleName, LastName, DOB, Address, Phone_number, Email);
 		this.StudentID = UUID.randomUUID();
