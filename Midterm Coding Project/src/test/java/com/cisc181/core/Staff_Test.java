@@ -16,6 +16,7 @@ public class Staff_Test {
 	// Creates the ArrayList of Staff
 
 	static ArrayList<Staff> staff1 = new ArrayList<Staff>();
+	private Staff st1;
 
 	public static Date newDate(int yr, int mon, int day) {
 		Calendar cal2 = Calendar.getInstance();
@@ -52,5 +53,18 @@ public class Staff_Test {
 		}
 		double average = sum / staff1.size();
 		assertEquals(average, 51420, .01);
+	}
+
+	@Test(expected = PersonException.class)
+	public void testDOBException() throws PersonException {
+
+		new Staff("Taylor", "Sara", "Coder", newDate(1905, 9, 29), "Renden Street", "(432)-636-6436",
+				"goode@hotmail.com", "T 8:25-10:50am", 4, 49300, newDate(2004, 1, 12), eTitle.MRS);
+	}
+
+	@Test(expected = PersonException.class)
+	public void testPhoneNumException() throws PersonException {
+		new Staff("Reese", "Tane", "McDoland", newDate(1976, 7, 25), "Rankin Street", "412-356-5389",
+				"wief@hotmail.com", "M 4:00-5:00pm", 3, 38000, newDate(2013, 5, 21), eTitle.MR);
 	}
 }
