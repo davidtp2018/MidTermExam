@@ -117,6 +117,7 @@ public class Student_Test {
 
 	}
 
+	//Finds the GPA for each of the Students that are in the ArrayList 
 	public double GpaCalc(UUID stID) {
 
 		double gpaAvg = 0;
@@ -146,8 +147,10 @@ public class Student_Test {
 		return (gpaAvg / sections.size());
 	}
 	
+	//Finds the Course Average for everyone that is enrolled in the ArrayList 
 	public double crsAvg(UUID section){
 		
+		final int DIVIDER = 100;
 		double crsavg = 0;
 		
 		for(Enrollment enrol : enrollment){
@@ -155,7 +158,7 @@ public class Student_Test {
 				crsavg += enrol.getGrade();
 			}
 		}
-		return ((crsavg/ enrollment.size() * 100) /100);
+		return (((crsavg / enrollment.size()) * DIVIDER) / DIVIDER);
 	}
 
 	@Test
