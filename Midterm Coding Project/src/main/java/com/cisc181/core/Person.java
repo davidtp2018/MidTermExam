@@ -47,24 +47,24 @@ public abstract class Person implements java.io.Serializable {
 	}
 
 	public void setDOB(Date DOB) throws PersonException {
-		
+
 		final int YEAR_REST = 100;
-		
-		//Gets the current year
+
+		// Gets the current year
 		Calendar thisYear = Calendar.getInstance();
-		
-		//gets the current year
+
+		// gets the current year
 		Calendar dobYear = Calendar.getInstance();
-		
-		//sets the dobYear to the DOB with the calendar time of the Date object 
+
+		// sets the dobYear to the DOB with the calendar time of the Date object
 		dobYear.setTime(DOB);
-		
+
 		// gets the Calendar year for the dobYear
 		int curYr = dobYear.get(Calendar.YEAR);
-		
-		if(thisYear.get(Calendar.YEAR) - curYr >= YEAR_REST){
+
+		if (thisYear.get(Calendar.YEAR) - curYr >= YEAR_REST) {
 			throw new PersonException(this);
-		}else{
+		} else {
 			this.DOB = DOB;
 		}
 	}
@@ -79,18 +79,17 @@ public abstract class Person implements java.io.Serializable {
 
 	public void setPhone(String newPhone_number) throws PersonException {
 
-		String regex = "^\\(?([0-9]{3})\\)?[-]?([0-9]{3})[-]?([0-9]{4})$";
-		Pattern patmat = Pattern.compile(regex);
-		Matcher matcher = patmat.matcher(regex);
-		
-		if(matcher.matches()){
-			phone_number = newPhone_number;
-		}else 
-			throw new PersonException(this);
-			System.out.println("Invalid Phone Number Entered");
+		String regex = "^\\({1}([0-9]{3})\\){1}-{1}([0-9]{3})-{1}([0-9]{4})$";
+		boolean expect = Pattern.matches(regex, newPhone_number);
 
-		// phone_number = newPhone_number;
+		if (expect) {
+			this.phone_number = newPhone_number;
+
+		} else {
+			throw new PersonException(this);
+		}
 	}
+	// phone_number = newPhone_number;
 
 	public String getPhone() {
 		return phone_number;
