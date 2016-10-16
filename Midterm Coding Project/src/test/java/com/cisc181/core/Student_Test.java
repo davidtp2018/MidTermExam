@@ -152,6 +152,7 @@ public class Student_Test {
 		
 		//Constant declared for the number of courses changes if want to add more to this later
 		final int COURSENUM = 6;
+		
 		double GPAAVG = 0;
 
 		if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
