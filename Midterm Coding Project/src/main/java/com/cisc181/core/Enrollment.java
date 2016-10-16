@@ -13,10 +13,10 @@ public class Enrollment {
 		
 	}
 	
-	public Enrollment(UUID SectionID, UUID StudentID){
+	public Enrollment(UUID StudentID, UUID SectionID){
 		this();
-		this.SectionID = SectionID;
-		this.StudentID = StudentID;
+		this.StudentID = SectionID;
+		this.SectionID = StudentID;
 		this.EnrollmentID = UUID .randomUUID();
 	}
 
