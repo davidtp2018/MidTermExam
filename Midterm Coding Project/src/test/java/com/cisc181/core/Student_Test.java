@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -114,6 +115,47 @@ public class Student_Test {
 			}
 		}
 
+	}
+
+	public double GpaCalc(UUID stID) {
+
+		double gpaAvg = 0;
+
+		for (Enrollment enrol : enrollment) {
+			if (enrol.getStudentID() == stID) {
+				if (enrol.getGrade() >= 95) {
+					gpaAvg += 4.00;
+				} else if (enrol.getGrade() >= 90) {
+					gpaAvg += 3.75;
+				} else if (enrol.getGrade() >= 85) {
+					gpaAvg += 3.50;
+				} else if (enrol.getGrade() >= 80) {
+					gpaAvg += 3.00;
+				} else if (enrol.getGrade() >= 75) {
+					gpaAvg += 2.50;
+				} else if (enrol.getGrade() >= 70) {
+					gpaAvg += 2.00;
+				} else if (enrol.getGrade() >= 65) {
+					gpaAvg += 1.50;
+				}else if (enrol.getGrade() >= 60) {
+					gpaAvg += 1.00;
+				} else 
+					gpaAvg += 0.0;
+			}
+		}
+		return (gpaAvg / sections.size());
+	}
+	
+	public double crsAvg(UUID section){
+		
+		double crsavg = 0;
+		
+		for(Enrollment enrol : enrollment){
+			if(enrol.getSectionID() == section){
+				crsavg += enrol.getGrade();
+			}
+		}
+		return ((crsavg/ enrollment.size() * 100) /100);
 	}
 
 	@Test
