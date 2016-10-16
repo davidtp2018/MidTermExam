@@ -15,18 +15,19 @@ import com.cisc181.eNums.eMajor;
 
 public class Student_Test {
 
+	//ArrayLists for each of the different things within the University
 	static ArrayList<Student> students = new ArrayList<Student>();
 	static ArrayList<Course> courses = new ArrayList<Course>();
 	static ArrayList<Semester> semesters = new ArrayList<Semester>();
 	static ArrayList<Section> sections = new ArrayList<Section>();
 
-	// Enrollment Arrays for each of the Students
-	static ArrayList<Enrollment> enroll1F = new ArrayList<Enrollment>();
-	static ArrayList<Enrollment> enroll1S = new ArrayList<Enrollment>();
-	static ArrayList<Enrollment> enroll2F = new ArrayList<Enrollment>();
-	static ArrayList<Enrollment> enroll2S = new ArrayList<Enrollment>();
-	static ArrayList<Enrollment> enroll3F = new ArrayList<Enrollment>();
-	static ArrayList<Enrollment> enroll3S = new ArrayList<Enrollment>();
+	// Enrollment ArraysLists for each of the Students
+	static ArrayList<Enrollment> bio1F = new ArrayList<Enrollment>();
+	static ArrayList<Enrollment> bio1S = new ArrayList<Enrollment>();
+	static ArrayList<Enrollment> crju2F = new ArrayList<Enrollment>();
+	static ArrayList<Enrollment> crju2S = new ArrayList<Enrollment>();
+	static ArrayList<Enrollment> chem3F = new ArrayList<Enrollment>();
+	static ArrayList<Enrollment> chem3S = new ArrayList<Enrollment>();
 
 	// Date for DOB purposes for constructors later on
 	public static Date newDate(int yr, int mon, int day) {
@@ -116,73 +117,74 @@ public class Student_Test {
 		students.add(stud9);
 		students.add(stud10);
 
-		// List of each of the possible grades
-		ArrayList<Integer> grPoint1 = new ArrayList<Integer>(Arrays.asList(95, 71, 32, 97, 79, 92, 67, 63, 85, 73));
-		ArrayList<Integer> grPoint2 = new ArrayList<Integer>(Arrays.asList(95, 76, 43, 97, 60, 78, 85, 67, 83, 83));
-		ArrayList<Integer> grPoint3 = new ArrayList<Integer>(Arrays.asList(96, 75, 65, 87, 74, 97, 73, 69, 80, 36));
+		// List of each of the possible grades for the students in the semesters
+		ArrayList<Integer> gradeSet1 = new ArrayList<Integer>(Arrays.asList(95, 71, 32, 97, 79, 92, 67, 63, 85, 73));
+		ArrayList<Integer> gradeSet2 = new ArrayList<Integer>(Arrays.asList(95, 76, 43, 97, 60, 78, 85, 67, 83, 83));
+		ArrayList<Integer> gradeSet3 = new ArrayList<Integer>(Arrays.asList(96, 75, 65, 87, 74, 97, 73, 69, 80, 36));
 
-		// Enrolls every student into the Sections
+		// Enrolls every student into the Sections for each of the courses
 		for (int k = 0; k < students.size(); k++) {
 
-			enroll1F.add(new Enrollment(sections.get(0).getSectionID(), students.get(k).getStudentID()));
-			enroll1F.get(k).setGrade(grPoint1.get(k));
+			bio1F.add(new Enrollment(sections.get(0).getSectionID(), students.get(k).getStudentID()));
+			bio1F.get(k).setGrade(gradeSet1.get(k));
 
-			enroll1S.add(new Enrollment(sections.get(1).getSectionID(), students.get(k).getStudentID()));
-			enroll1S.get(k).setGrade(grPoint2.get(k));
+			bio1S.add(new Enrollment(sections.get(1).getSectionID(), students.get(k).getStudentID()));
+			bio1S.get(k).setGrade(gradeSet2.get(k));
 
-			enroll2F.add(new Enrollment(sections.get(2).getSectionID(), students.get(k).getStudentID()));
-			enroll2F.get(k).setGrade(grPoint3.get(k));
+			crju2F.add(new Enrollment(sections.get(2).getSectionID(), students.get(k).getStudentID()));
+			crju2F.get(k).setGrade(gradeSet3.get(k));
 
-			enroll2S.add(new Enrollment(sections.get(3).getSectionID(), students.get(k).getStudentID()));
-			enroll2S.get(k).setGrade(grPoint1.get(k));
+			crju2S.add(new Enrollment(sections.get(3).getSectionID(), students.get(k).getStudentID()));
+			crju2S.get(k).setGrade(gradeSet1.get(k));
 
-			enroll3F.add(new Enrollment(sections.get(4).getSectionID(), students.get(k).getStudentID()));
-			enroll3F.get(k).setGrade(grPoint2.get(k));
+			chem3F.add(new Enrollment(sections.get(4).getSectionID(), students.get(k).getStudentID()));
+			chem3F.get(k).setGrade(gradeSet2.get(k));
 
-			enroll3S.add(new Enrollment(sections.get(5).getSectionID(), students.get(k).getStudentID()));
-			enroll3S.get(k).setGrade(grPoint3.get(k));
+			chem3S.add(new Enrollment(sections.get(5).getSectionID(), students.get(k).getStudentID()));
+			chem3S.get(k).setGrade(gradeSet3.get(k));
 		}
 
 	}
 
 	// Calculates the GPA of the Student
-	public double calcStudentGPA(ArrayList<Enrollment> enroll1F, ArrayList<Enrollment> enroll1S,
-			ArrayList<Enrollment> enroll2F, ArrayList<Enrollment> enroll2S, ArrayList<Enrollment> enroll3F,
-			ArrayList<Enrollment> enroll3S, int Student) {
-
+	public double calcStudentGPA(ArrayList<Enrollment> bio1F, ArrayList<Enrollment> bio1S, ArrayList<Enrollment> crju2F,
+			ArrayList<Enrollment> crju2S, ArrayList<Enrollment> chem3F, ArrayList<Enrollment> chem3S, int Student) {
+		
+		//Constant declared for the number of courses changes if want to add more to this later
+		final int COURSENUM = 6;
 		double GPAAVG = 0;
 
-		if ((enroll1F.get(Student).getGrade() + enroll1S.get(Student).getGrade() + enroll2F.get(Student).getGrade()
-				+ enroll2S.get(Student).getGrade() + enroll3F.get(Student).getGrade()
-				+ enroll3S.get(Student).getGrade()) / 6 >= 95) {
+		if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
+				+ crju2S.get(Student).getGrade() + chem3F.get(Student).getGrade() + chem3S.get(Student).getGrade())
+				/ COURSENUM >= 95) {
 			GPAAVG = 4.0;
-		} else if ((enroll1F.get(Student).getGrade() + enroll1S.get(Student).getGrade()
-				+ enroll2F.get(Student).getGrade() + enroll2S.get(Student).getGrade() + enroll3F.get(Student).getGrade()
-				+ enroll3S.get(Student).getGrade()) / 6 >= 90) {
+		} else if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
+				+ crju2S.get(Student).getGrade() + chem3F.get(Student).getGrade() + chem3S.get(Student).getGrade())
+				/ COURSENUM >= 90) {
 			GPAAVG = 3.75;
-		} else if ((enroll1F.get(Student).getGrade() + enroll1S.get(Student).getGrade()
-				+ enroll2F.get(Student).getGrade() + enroll2S.get(Student).getGrade() + enroll3F.get(Student).getGrade()
-				+ enroll3S.get(Student).getGrade()) / 6 >= 85) {
+		} else if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
+				+ crju2S.get(Student).getGrade() + chem3F.get(Student).getGrade() + chem3S.get(Student).getGrade())
+				/ COURSENUM >= 85) {
 			GPAAVG = 3.50;
-		} else if ((enroll1F.get(Student).getGrade() + enroll1S.get(Student).getGrade()
-				+ enroll2F.get(Student).getGrade() + enroll2S.get(Student).getGrade() + enroll3F.get(Student).getGrade()
-				+ enroll3S.get(Student).getGrade()) / 6 >= 80) {
+		} else if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
+				+ crju2S.get(Student).getGrade() + chem3F.get(Student).getGrade() + chem3S.get(Student).getGrade())
+				/ COURSENUM >= 80) {
 			GPAAVG = 3.00;
-		} else if ((enroll1F.get(Student).getGrade() + enroll1S.get(Student).getGrade()
-				+ enroll2F.get(Student).getGrade() + enroll2S.get(Student).getGrade() + enroll3F.get(Student).getGrade()
-				+ enroll3S.get(Student).getGrade()) / 6 >= 75) {
+		} else if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
+				+ crju2S.get(Student).getGrade() + chem3F.get(Student).getGrade() + chem3S.get(Student).getGrade())
+				/ COURSENUM >= 75) {
 			GPAAVG = 2.50;
-		} else if ((enroll1F.get(Student).getGrade() + enroll1S.get(Student).getGrade()
-				+ enroll2F.get(Student).getGrade() + enroll2S.get(Student).getGrade() + enroll3F.get(Student).getGrade()
-				+ enroll3S.get(Student).getGrade()) / 6 >= 70) {
+		} else if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
+				+ crju2S.get(Student).getGrade() + chem3F.get(Student).getGrade() + chem3S.get(Student).getGrade())
+				/ COURSENUM >= 70) {
 			GPAAVG = 2.00;
-		} else if ((enroll1F.get(Student).getGrade() + enroll1S.get(Student).getGrade()
-				+ enroll2F.get(Student).getGrade() + enroll2S.get(Student).getGrade() + enroll3F.get(Student).getGrade()
-				+ enroll3S.get(Student).getGrade()) / 6 >= 65) {
+		} else if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
+				+ crju2S.get(Student).getGrade() + chem3F.get(Student).getGrade() + chem3S.get(Student).getGrade())
+				/ COURSENUM >= 65) {
 			GPAAVG = 1.50;
-		} else if ((enroll1F.get(Student).getGrade() + enroll1S.get(Student).getGrade()
-				+ enroll2F.get(Student).getGrade() + enroll2S.get(Student).getGrade() + enroll3F.get(Student).getGrade()
-				+ enroll3S.get(Student).getGrade()) / 6 >= 60) {
+		} else if ((bio1F.get(Student).getGrade() + bio1S.get(Student).getGrade() + crju2F.get(Student).getGrade()
+				+ crju2S.get(Student).getGrade() + chem3F.get(Student).getGrade() + chem3S.get(Student).getGrade())
+				/ COURSENUM >= 60) {
 			GPAAVG = 1.00;
 		} else {
 			GPAAVG = 0.00;
@@ -190,26 +192,55 @@ public class Student_Test {
 		return GPAAVG;
 	}
 
+	// Tests for the Student GPA's within all of the courses that they are taking
 	@Test
 	public void StudentGPATest() {
-		assertEquals(4.0, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 0), .01);
-		assertEquals(2.0, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 1), .01);
-		assertEquals(0.0, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 2), .01);
-		assertEquals(3.75, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 3), .01);
-		assertEquals(2.0, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 4), .01);
-		assertEquals(3.5, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 5), .01);
-		assertEquals(2.5, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 6), .01);
-		assertEquals(1.5, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 7), .01);
-		assertEquals(3.0, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 8), .01);
-		assertEquals(1.0, calcStudentGPA(enroll1F, enroll1S, enroll2F, enroll2S, enroll3F, enroll3S, 9), .01);
+		assertEquals(4.0, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 0), .001);
+		assertEquals(2.0, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 1), .001);
+		assertEquals(0.0, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 2), .001);
+		assertEquals(3.75, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 3), .001);
+		assertEquals(2.0, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 4), .001);
+		assertEquals(3.5, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 5), .001);
+		assertEquals(2.5, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 6), .001);
+		assertEquals(1.5, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 7), .001);
+		assertEquals(3.0, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 8), .001);
+		assertEquals(1.0, calcStudentGPA(bio1F, bio1S, crju2F, crju2S, chem3F, chem3S, 9), .001);
 	}
 
-	// Finds the GPA for each of the Students that are in the ArrayList
+	// Method for getting what the course average is for the courses
+	public static double CourseGr(ArrayList<Enrollment> courses) {
+
+		double avg = 0;
+		double courseAvg = 0;
+
+		for (int y = 0; y < students.size(); y++) {
+			avg += courses.get(y).getGrade();
+			courseAvg = (avg / students.size());
+		}
+		return courseAvg;
+	}
+
+	// Tests for the course average grade
+	@Test
+	public void testCourseGr() {
+		assertEquals(75.4, CourseGr(bio1F), .01);
+		assertEquals(76.7, CourseGr(bio1S), 01);
+		assertEquals(75.2, CourseGr(crju2F), .01);
+		assertEquals(75.4, CourseGr(crju2S), .01);
+		assertEquals(76.7, CourseGr(chem3F), 01);
+		assertEquals(75.2, CourseGr(chem3S), .01);
+	}
+
+	// Method for the change of major if a student does so
+	public static void ChangeOfMajor(eMajor maj, Student stu) {
+		stu.seteMajor(maj);
+	}
+
+	// Test for the change of major if a student does so
 	@Test
 	public void testMajorChangeStudent() {
-		assertTrue(students.get(5).geteMajor() == eMajor.NURSING);
-		students.get(5).seteMajor(eMajor.COMPSI);
-		assertTrue(students.get(5).geteMajor() == eMajor.COMPSI);
+		ChangeOfMajor(eMajor.CHEM, students.get(5));
+		assertEquals(eMajor.CHEM, students.get(5).geteMajor());
 	}
 
 }

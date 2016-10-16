@@ -62,6 +62,7 @@ public abstract class Person implements java.io.Serializable {
 		// gets the Calendar year for the dobYear
 		int curYr = dobYear.get(Calendar.YEAR);
 
+		// if DOB is over 100 years of the current date then exception is thrown
 		if (thisYear.get(Calendar.YEAR) - curYr >= YEAR_REST) {
 			throw new PersonException(this);
 		} else {
@@ -89,7 +90,6 @@ public abstract class Person implements java.io.Serializable {
 			throw new PersonException(this);
 		}
 	}
-	// phone_number = newPhone_number;
 
 	public String getPhone() {
 		return phone_number;
